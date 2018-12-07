@@ -45,9 +45,9 @@ public class MessagingController {
 	
 	
 	
-	@RequestMapping("/messages/{user}")
+	@RequestMapping("/messages/find/{user}")
 	public ResponseEntity<List<Message>> getMessageForUser(User user) {
-		List<Message> messages = messagedao.findByReciever(user);
+		List<Message> messages = messagedao.findByReciever(user.getUserid());
 		ResponseEntity<List<Message>> response = null;
 		if (messages == null) {
 			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);

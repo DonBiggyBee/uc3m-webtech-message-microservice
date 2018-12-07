@@ -13,7 +13,9 @@ public interface MessageDAO extends CrudRepository<Message, Long> {
 	@Query("Select m from Message m where m.messageid=:messageid")
 	public Message findById(@Param("messageid") int id);
 	
-	public List<Message> findByReciever(User reciever);
+	
+	@Query("Select m from Message m JOIN m.reciever u WHERE u.userid =:userid ")
+	public List<Message> findByReciever(@Param("userid") long id);
 
 	public List<Message> findAll();
 
