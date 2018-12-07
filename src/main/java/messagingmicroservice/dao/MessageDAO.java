@@ -10,7 +10,7 @@ import messagingmicroservice.domains.Message;
 import messagingmicroservice.domains.User;
 
 public interface MessageDAO extends CrudRepository<Message, Long> {
-	@Query("Select m from Message where m.messageid=:messageid")
+	@Query("Select m from Message m where m.messageid=:messageid")
 	public Message findById(@Param("messageid") int id);
 	
 	public List<Message> findByReciever(User reciever);

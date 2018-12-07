@@ -20,7 +20,6 @@ public class Message implements Serializable {
 
 	private String text;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date time_stamp;
 
 	//bi-directional many-to-one association to User

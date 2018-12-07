@@ -26,11 +26,6 @@ public class MessagingController {
 	MessageDAO messagedao;
 	
 	@RequestMapping("/messages")
-	public List<Message> getMessages() {
-		return getAllMessages();
-	}
-	
-	@RequestMapping("/messages")
 	public List<Message> getAllMessages() {
 		return messagedao.findAll();
 	}
