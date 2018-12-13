@@ -74,10 +74,9 @@ public class MessagingController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, value = "/messages/{id}")
-	public ResponseEntity<Message> updateMessage(@PathVariable int id , @RequestBody @Validated Message message) {
-		Message messageDB = messagedao.findById(id);
+	public ResponseEntity<Message> updateMessage(@PathVariable long id , @RequestBody @Validated Message message) {
+		Message messageDB = messagedao.findById(id).orElse(null);
 		ResponseEntity<Message> response;
-
 		if (messageDB != null){
 			if (message.getText()!=null) {
 				messageDB.setText(message.getText());
@@ -91,6 +90,8 @@ public class MessagingController {
 			if (message.getTime_stamp()!=null) {
 				messageDB.setTime_stamp(message.getTime_stamp());
 			}
+			messageDB.setMessage_read(message.isMessage_read());
+			messagedao.save(messageDB);
 			response = new ResponseEntity<>(messageDB, HttpStatus.OK);
 			return response;
 		}
