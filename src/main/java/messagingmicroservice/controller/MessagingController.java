@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import messagingmicroservice.dao.MessageDAO;
 import messagingmicroservice.domains.Message;
 import messagingmicroservice.domains.User;
 
-@Controller
+@RestController
 @CrossOrigin
 public class MessagingController {
 
