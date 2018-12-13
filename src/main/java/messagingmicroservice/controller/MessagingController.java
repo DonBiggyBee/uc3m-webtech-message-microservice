@@ -32,8 +32,8 @@ public class MessagingController {
 	}
 	
 	@RequestMapping("/messages/{id}")
-	public ResponseEntity<Message> getMessage(@PathVariable int id) {
-		Message message = messagedao.findById(id);
+	public ResponseEntity<Message> getMessage(@PathVariable long id) {
+		Message message = messagedao.findById(id).orElse(null);
 		ResponseEntity<Message> response = null;
 		if (message == null) {
 			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -46,9 +46,9 @@ public class MessagingController {
 	
 	
 	
-	@RequestMapping("/messages/find/{user}")
-	public ResponseEntity<List<Message>> getMessageForUser(User user) {
-		List<Message> messages = messagedao.findByReciever(user.getUserid());
+	@RequestMapping("/messages/find/{userid}")
+	public ResponseEntity<List<Message>> getMessageForUser(@PathVariable long userid) {
+		List<Message> messages = messagedao.findByReciever(userid);
 		ResponseEntity<List<Message>> response = null;
 		if (messages == null) {
 			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
